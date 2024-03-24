@@ -19,3 +19,23 @@ Bericht titel: Naam van het museum, wordt bij de weergave gebruikt
 Tekst vak (de content): wordt getoont. Hou dit kort en grappig. Verschijnt in de uiteindelijke post
 Datum bezoek: bezoek datum
 Museum Website: invoerveld waar link naar de site van het museum kan worden geplaats
+
+
+Gebruik in WP:
+Upload de php en js file in een plugin dir:
+- museum
+  - museum.php
+  - museum.js
+
+activeer de plugin en gebruik de invoer
+
+Weergave van de postst
+maak een nieuwe pagina in oxygen. Maak minimaal een section en zet daar een easypost in.
+maak de volgende aanpassingen in de easypost:
+
+Maak een customquery
+- posttype: museum_reviews (als de plugin goed geinstalleerd is dan maakt oxygen een dropdownlist waar deze te kiezen is)
+- filtering: het idee is een pagina per datum. Kies hier dan de datum om op te filteren
+
+vul Template.php met de inhoud van template.txt
+vul template.css met de inhoud van css.txt
