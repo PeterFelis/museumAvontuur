@@ -30,6 +30,17 @@
   overflow-x: hidden;
 }
 
+.oxy-post-images-lint {
+  overflow-y: hidden; /* Verbergt de verticale scrollbar, indien aanwezig */
+  overflow-x: scroll; /* Houdt horizontaal scrollen mogelijk, indien nodig */
+  scrollbar-width: none; /* Voor Firefox */
+}
+
+.oxy-post-images-lint::-webkit-scrollbar {
+  display: none; /* Voor Chrome, Safari, en Opera */
+}
+
+
 %%EPID%% a {
   color:black;
 }
