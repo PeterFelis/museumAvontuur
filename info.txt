@@ -1,0 +1,91 @@
+museumAvontuur
+Plugin: museum avontuur plugin 
+Datum: 19-04-2024
+versie: 2.0 
+
+In het kort: Een wordpress plugin waar mee ik mij museum bezoeken kan bewaren en tonen op felis.nl. Dit is een aangpaste aanvoering waarbij
+alles in de plugin zit (ook html en css). Plugin eenvoudig op de pagina plaatsen en het werkt.
+
+
+Uitleg: In maart 24 ben ik me een aantal anderen begonnen 4 a 5 musea op een zaterdag te bezoeken. 
+Ik wilde dit niet voorbij laten gaan en besloot dit te fotograferen. 
+In ieder museum maak ik een aantal fotos (met mijn Panasonic camera, beter van kwaliteit dan mijn telefoon). 
+Ik neem ook een poppetje mee die op een aantal fotos terug komt. Een soort rode draad.
+
+Het is een wordpress plugin, bestaat uit 3 files.
+
+museum.php
+museum.js Museum.php maakt een extra entry museumbezoeken in het wp dashboard. 
+Een museumbezoek in een eigen post type. Chat heeft dit uitgewerkt. 
+De eigenlijke ontwikkeling van de plugin is gedaan met/door Chat- gtp
+
+Het is sorteerbaar op tags. 
+Ik heb dit gebruikt om te sorteren op datum en maak een pagina per datum. 
+Kan ook op iedere andere manier gebruikt worden.
+
+Invoer beschikbaar: 
+
+Bericht titel: Naam van het museum, wordt bij de weergave gebruikt 
+Tekst vak (de content): wordt getoont. Hou dit kort en grappig. Verschijnt in de uiteindelijke post 
+
+Datum bezoek: bezoek datum Museum
+Website: invoerveld waar link naar de site van het museum kan worden geplaats. Wordt klikable bij tonen 
+Google maps link: copieer de google map url en plaats die hier. wordt ook klikable 
+
+Textkleur (hexcode): geef hier de voorgrond tekst kleur per musuem op, dit is puur optisch voor de weergave
+achtergrondkleur (hexcode): geef hier de achtergrond kleur per musuem op, dit is puur optisch voor de weergave
+
+
+Voeg afbeeldigen toe: klik en selecteer alle afbeeldingen (in de wordpress mediabox) die je bij het museum wilt hebben. 
+Geen edit mogelijkheid, iets fout gedaan? Gewoon de knop klikken en opnieuw proberen.
+De fotos worden als tumbnails zichtbaar na klikken update. 
+
+
+
+
+museum.js
+Laden van de afbeeldingen in de museum post gaat via deze ajax javascript file.
+gemaakt door Chat
+
+
+component.php
+Plaats dit op de pagina en de component is aktief. De pagina gaat nu de bezoeken tonen.
+Plaats een shortcode component in de pagina en geef op:    [museum_reviews]
+
+CSS en HTML zit ingebakken in de component. Dit was oorspronkelijk een oxygen easypost (vandaar de rare css)
+maar dit is omgezet naar een component
+dit is hoe het werkt
+
+Functiedefinitie: 
+De functie museum_reviews_component() gebruikt ob_start() om output buffering te starten. 
+Dit betekent dat alle output in de functie tijdelijk wordt opgeslagen en niet direct naar de browser wordt gestuurd.
+
+Query opzetten: Er wordt een nieuwe WP_Query gemaakt om posts van het type 'museum_reviews' op te halen. 
+Deze query sorteert de posts op de meta_key 'visit_date' in aflopende volgorde (DESC), wat betekent dat de nieuwste beoordelingen eerst worden getoond.
+
+Loop door de posts: 
+Als er posts beschikbaar zijn, worden deze één voor één verwerkt. 
+Voor elke post:
+Het post-ID wordt opgehaald.
+Afbeeldings-ID's die bij de post horen worden opgehaald en gesplitst (vermoedelijk worden ze opgeslagen als een komma-gescheiden lijst).
+De achtergrondkleur en tekstkleur voor de post worden opgehaald uit de metadata.
+
+HTML-output: 
+Voor elke post wordt een HTML-div aangemaakt met de opgehaalde stijlinformatie (achtergrondkleur, tekstkleur).
+Verschillende elementen zoals de titel, bezoekdatum, en links naar de museumwebsite en Google Maps worden toegevoegd. 
+Er wordt ook een contentblok en een afbeeldingenlint met navigatiepijlen getoond.
+
+Geen posts gevonden: 
+Als er geen posts zijn, wordt een bericht getoond dat er geen museum reviews gevonden zijn.
+
+Stijlen en JavaScript: 
+Aan het eind van de functie worden CSS-stijlen en JavaScript toegevoegd. 
+De CSS zorgt voor de opmaak van het reviewscomponent, inclusief de navigatiepijlen en het afbeeldingenlint. 
+
+Het JavaScript zorgt ervoor dat de pijlen het afbeeldingenlint horizontaal laten scrollen bij klikken.
+Shortcode: 
+Uiteindelijk wordt de functie aan een shortcode gebonden (museum_reviews), zodat deze functie kan worden gebruikt in WordPress-posts, pagina's of widgets door de shortcode [museum_reviews] toe te voegen.
+
+
+
+
